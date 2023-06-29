@@ -23,7 +23,9 @@ public class LocalDateDeserializer extends JsonDeserializer<LocalDate> {
 
             return dateNode.textValue() != null ?
                     LocalDate.parse(dateNode.textValue(), dateTimeFormatter) :
-                    LocalDate.ofInstant(Instant.ofEpochMilli(dateNode.get("$numberLong").asLong()), ZoneId.systemDefault());
+                    Instant.ofEpochMilli(dateNode.get("$numberLong").asLong())
+                            .atZone(ZoneId.systemDefault()).toLocalDate();
+
         } catch (Exception exception) {
             throw new BadRequestException("Deserialization failed.", exception);
         }
