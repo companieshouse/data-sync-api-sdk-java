@@ -16,7 +16,7 @@ public class WriteConverter<S> implements Converter<S, BasicDBObject> {
     }
     /**
      * Write convertor.
-     * @param source source Statement object.
+     * @param source object.
      * @return BSON object to be saved as part of Document.
      */
     @Override
