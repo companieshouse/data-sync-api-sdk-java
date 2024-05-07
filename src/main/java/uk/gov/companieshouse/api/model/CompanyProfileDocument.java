@@ -99,8 +99,9 @@ public class CompanyProfileDocument {
         return parentCompanyNumber;
     }
 
-    public void setParentCompanyNumber(String parentCompanyNumber) {
+    public CompanyProfileDocument setParentCompanyNumber(String parentCompanyNumber) {
         this.parentCompanyNumber = parentCompanyNumber;
+        return this;
     }
 
     @Override
