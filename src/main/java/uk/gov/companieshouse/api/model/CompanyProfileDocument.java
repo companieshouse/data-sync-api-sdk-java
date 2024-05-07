@@ -51,16 +51,6 @@ public class CompanyProfileDocument {
         this.hasMortgages = hasMortgages;
     }
 
-    public CompanyProfileDocument(String id, Boolean hasMortgages, Data companyProfile, LocalDateTime deltaAt,
-            Updated updated, String parentCompanyNumber) {
-        this.id = id;
-        this.hasMortgages = hasMortgages;
-        this.companyProfile = companyProfile;
-        this.deltaAt = deltaAt;
-        this.updated = updated;
-        this.parentCompanyNumber = parentCompanyNumber;
-    }
-
     public String getId() {
         return id;
     }
