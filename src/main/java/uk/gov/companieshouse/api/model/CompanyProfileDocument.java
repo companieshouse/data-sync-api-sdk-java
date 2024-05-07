@@ -28,6 +28,8 @@ public class CompanyProfileDocument {
 
     private Updated updated;
 
+    private String parentCompanyNumber;
+
     public CompanyProfileDocument(Updated updated) {
         this.updated = updated;
     }
@@ -92,6 +94,14 @@ public class CompanyProfileDocument {
         this.hasMortgages = hasMortgages;
     }
 
+    public String getParentCompanyNumber() {
+        return parentCompanyNumber;
+    }
+
+    public void setParentCompanyNumber(String parentCompanyNumber) {
+        this.parentCompanyNumber = parentCompanyNumber;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -104,11 +114,12 @@ public class CompanyProfileDocument {
         return id.equals(that.id) && companyProfile.equals(
                 that.companyProfile)
                 && updated.equals(that.updated)
-                && hasMortgages == that.hasMortgages;
+                && hasMortgages == that.hasMortgages
+                && parentCompanyNumber.equals(that.parentCompanyNumber);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, companyProfile, updated, hasMortgages);
+        return Objects.hash(id, companyProfile, updated, hasMortgages, parentCompanyNumber);
     }
 }
