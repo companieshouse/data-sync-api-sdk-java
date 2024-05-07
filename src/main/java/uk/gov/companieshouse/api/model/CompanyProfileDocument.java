@@ -28,6 +28,7 @@ public class CompanyProfileDocument {
 
     private Updated updated;
 
+    @Field("parent_company_number")
     private String parentCompanyNumber;
 
     public CompanyProfileDocument(Updated updated) {
