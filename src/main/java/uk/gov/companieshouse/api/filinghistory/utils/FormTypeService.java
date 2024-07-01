@@ -346,7 +346,6 @@ public class FormTypeService {
         list.add("RR05");
         list.add("RR06");
         list.add("RR07");
-        list.add("RR08");
         list.add("RR09");
         list.add("RR10");
         list.add("AUDR");
@@ -355,7 +354,6 @@ public class FormTypeService {
         list.add("CERT1");
         list.add("CERT11");
         list.add("CERT2");
-        list.add("CERT22");
         list.add("CERT23");
         list.add("CERT24");
         list.add("CERT4");
