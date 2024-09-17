@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
+import java.time.ZoneOffset;
 import uk.gov.companieshouse.api.exception.BadRequestException;
 
 import java.time.Instant;
@@ -24,7 +25,7 @@ public class LocalDateDeserializer extends JsonDeserializer<LocalDate> {
             return dateNode.textValue() != null ?
                     LocalDate.parse(dateNode.textValue(), dateTimeFormatter) :
                     Instant.ofEpochMilli(dateNode.get("$numberLong").asLong())
-                            .atZone(ZoneId.systemDefault()).toLocalDate();
+                            .atZone(ZoneOffset.UTC).toLocalDate();
 
         } catch (Exception exception) {
             throw new BadRequestException("Deserialization failed.", exception);
