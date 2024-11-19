@@ -1,5 +1,6 @@
 package uk.gov.companieshouse.api.model;
 
+import java.util.Objects;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 import uk.gov.companieshouse.api.psc.Statement;
@@ -65,4 +66,25 @@ public class PscStatementDocument {
         this.deltaAt = deltaAt;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        PscStatementDocument that = (PscStatementDocument) o;
+        return Objects.equals(getId(), that.getId()) && Objects.equals(getCreated(), that.getCreated())
+                && Objects.equals(getCompanyNumber(), that.getCompanyNumber()) && Objects.equals(
+                getUpdated(), that.getUpdated()) && Objects.equals(getPscStatementId(), that.getPscStatementId())
+                && Objects.equals(getData(), that.getData()) && Objects.equals(getDeltaAt(),
+                that.getDeltaAt());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getCreated(), getCompanyNumber(), getUpdated(), getPscStatementId(), getData(),
+                getDeltaAt());
+    }
 }
