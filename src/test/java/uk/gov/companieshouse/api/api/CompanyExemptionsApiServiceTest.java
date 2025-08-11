@@ -71,7 +71,7 @@ public class CompanyExemptionsApiServiceTest {
     void handleExceptionWhenGetExemptionsThrows() throws ApiErrorResponseException, URIValidationException {
         when(companyExemptionsGetAll.execute()).thenThrow(ApiErrorResponseException.class);
 
-        assertThrows(ResponseStatusException.class, () -> companyExemptionsApiService.getCompanyExemptions(COMPANY_NUMBER));
+        assertThrows(IllegalArgumentException.class, () -> companyExemptionsApiService.getCompanyExemptions(COMPANY_NUMBER));
 
         verify(resourceHandler, times(1)).getCompanyExemptionsResource(any());
         verify(companyExemptionsGetAll, times(1)).execute();
