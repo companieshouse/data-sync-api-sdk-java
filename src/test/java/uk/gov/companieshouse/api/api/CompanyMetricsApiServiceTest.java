@@ -18,7 +18,6 @@ import uk.gov.companieshouse.api.model.ApiResponse;
 import uk.gov.companieshouse.logging.Logger;
 import uk.gov.companieshouse.api.exception.ResourceNotFoundException;
 import uk.gov.companieshouse.api.utils.TestHelper;
-import java.lang.IllegalArgumentException;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
