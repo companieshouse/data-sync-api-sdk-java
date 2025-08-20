@@ -69,10 +69,13 @@ public class CompanyExemptionsApiServiceTest {
 
     @Test
     void handleExceptionWhenGetExemptionsThrows() throws ApiErrorResponseException, URIValidationException {
-        when(companyExemptionsGetAll.execute()).thenThrow(ApiErrorResponseException.class);
 
+        ApiErrorResponseException mockException = mock(ApiErrorResponseException.class);
+        when(mockException.getStatusCode()).thenReturn(500);
+        when(mockException.getStatusMessage()).thenReturn("Internal server error");
+
+        when(companyExemptionsGetAll.execute()).thenThrow(mockException);
         assertThrows(ResponseStatusException.class, () -> companyExemptionsApiService.getCompanyExemptions(COMPANY_NUMBER));
-
         verify(resourceHandler, times(1)).getCompanyExemptionsResource(any());
         verify(companyExemptionsGetAll, times(1)).execute();
     }

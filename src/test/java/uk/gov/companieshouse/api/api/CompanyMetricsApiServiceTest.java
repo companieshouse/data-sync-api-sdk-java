@@ -18,7 +18,6 @@ import uk.gov.companieshouse.api.model.ApiResponse;
 import uk.gov.companieshouse.logging.Logger;
 import uk.gov.companieshouse.api.exception.ResourceNotFoundException;
 import uk.gov.companieshouse.api.utils.TestHelper;
-
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -72,7 +71,11 @@ public class CompanyMetricsApiServiceTest {
     void shouldHandleExceptionWhenCompanyMetricsThrows()
             throws ApiErrorResponseException, URIValidationException {
 
-        when(privateCompanyMetricsGet.execute()).thenThrow(ApiErrorResponseException.class);
+        ApiErrorResponseException mockException = mock(ApiErrorResponseException.class);
+        when(mockException.getStatusCode()).thenReturn(500);
+        when(mockException.getStatusMessage()).thenReturn("Internal server error");
+
+        when(privateCompanyMetricsGet.execute()).thenThrow(mockException);
         assertThrows(ResponseStatusException.class, () -> companyMetricsApiService.getCompanyMetrics(COMPANY_NUMBER));
         verify(privateCompanyMetricsResourceHandler, times(1)).getCompanyMetrics(any());
         verify(privateCompanyMetricsGet, times(1)).execute();
