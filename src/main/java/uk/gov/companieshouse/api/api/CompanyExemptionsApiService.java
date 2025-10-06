@@ -51,7 +51,7 @@ public class CompanyExemptionsApiService {
                 logger.error(String.format(
                     "Error calling getCompanyExemptions endpoint. " 
                         + "Status Code: [%s] - message [%s]", e.getStatusCode(), e.getStatusMessage()));
-                throw new ResponseStatusException(e.getStatusCode(), e.getStatusMessage(), null);
+                throw new ResponseStatusException(resolveHttpStatus(e.getStatusCode()), e.getStatusMessage(), e);
             }
         } catch (Exception e) {
             logger.error(String.format(
@@ -60,5 +60,14 @@ public class CompanyExemptionsApiService {
         }
         return Optional.empty();
     }
-    
+
+    /**
+     Changes a number status code into HttpStatus to prevent errors with unknown codes.
+     This is needed because Spring Boot 3.x is stricter than version 2.7.x.
+     In 3.x, using just a number can cause problems, so we use HttpStatus instead.
+     */
+    private org.springframework.http.HttpStatus resolveHttpStatus(int statusCode) {
+        org.springframework.http.HttpStatus status = org.springframework.http.HttpStatus.resolve(statusCode);
+        return (status != null) ? status : org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
+    }
 }
