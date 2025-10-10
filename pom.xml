@@ -108,43 +108,49 @@
             <artifactId>structured-logging</artifactId>
             <version>${structured-logging.version}</version>
             <exclusions>
+                <!-- exclude commons-compiler to fix CVE-2023-33546 -->
                 <exclusion>
                     <groupId>org.codehaus.janino</groupId>
                     <artifactId>commons-compiler</artifactId>
                 </exclusion>
+                <!-- exclude janino to fix CVE-2023-33546 -->
                 <exclusion>
                     <groupId>org.codehaus.janino</groupId>
                     <artifactId>janino</artifactId>
                 </exclusion>
+                <!-- exclude logback-core to fix CVE-2023-6378 -->
                 <exclusion>
                     <groupId>ch.qos.logback</groupId>
                     <artifactId>logback-core</artifactId>
                 </exclusion>
+                <!-- exclude logback-classic to fix CVE-2023-6378 -->
                 <exclusion>
                     <groupId>ch.qos.logback</groupId>
                     <artifactId>logback-classic</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
-        <!-- included to fix CVE-2023-6378-->
+
+        <!-- included to override logback-core-1.2.11 to fix CVE-2023-6378-->
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-core</artifactId>
             <version>${logback.version}</version>
         </dependency>
+        <!-- included to override logback-classic-1.2.11 to fix CVE-2023-6378-->
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>${logback.version}</version>
         </dependency>
-        <!-- included to fix CVE-2023-33546 -->
+        <!-- included to override commons-compiler-3.1.9 to fix CVE-2023-33546 -->
         <dependency>
             <groupId>org.codehaus.janino</groupId>
             <artifactId>commons-compiler</artifactId>
             <version>${commons-compiler.version}</version>
         </dependency>
 
-        <!-- included to fix CVE-2023-33546 -->
+        <!-- included to override janino-3.1.9 to fix CVE-2023-33546 -->
         <dependency>
             <groupId>org.codehaus.janino</groupId>
             <artifactId>janino</artifactId>
