@@ -18,7 +18,16 @@
     <properties>
         <maven-build-helper-plugin.version>3.2.0</maven-build-helper-plugin.version>
         <spring-boot-dependencies.version>2.7.9</spring-boot-dependencies.version>
-
+        <docker-java-api.version>3.2.12</docker-java-api.version>
+        <commons-lang3.version>3.19.0</commons-lang3.version>
+        <commons-beanutils.version>1.11.0</commons-beanutils.version>
+        <snakeyaml.version>2.4</snakeyaml.version>
+        <jackson-databind.version>2.20.0</jackson-databind.version>
+        <guava.version>33.4.2-jre</guava.version>
+        <plexus-utils.version>3.5.1</plexus-utils.version>
+        <janino.version>3.1.12</janino.version>
+        <commons-compiler.version>3.1.12</commons-compiler.version>
+        <logback.version>1.5.18</logback.version>
         <!-- tests -->
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
         <jib-maven-plugin.version>3.1.1</jib-maven-plugin.version>
@@ -26,9 +35,8 @@
         <maven-failsafe-plugin.version>3.0.0-M5</maven-failsafe-plugin.version>
         <skip.unit.tests>false</skip.unit.tests>
         <maven-resources-plugin.version>2.5</maven-resources-plugin.version>
-
         <!-- Internal -->
-        <structured-logging.version>1.9.12</structured-logging.version>
+        <structured-logging.version>3.0.42</structured-logging.version>
         <private-api-sdk-java.version>2.0.245</private-api-sdk-java.version>
         <api-security-java.version>0.4.1</api-security-java.version>
         <api-sdk-manager-java-library.version>1.0.4</api-sdk-manager-java-library.version>
@@ -99,11 +107,86 @@
             <groupId>uk.gov.companieshouse</groupId>
             <artifactId>structured-logging</artifactId>
             <version>${structured-logging.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.codehaus.janino</groupId>
+                    <artifactId>commons-compiler</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.codehaus.janino</groupId>
+                    <artifactId>janino</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>ch.qos.logback</groupId>
+                    <artifactId>logback-core</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>ch.qos.logback</groupId>
+                    <artifactId>logback-classic</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!-- included to fix CVE-2023-6378-->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+        <!-- included to fix CVE-2023-33546 -->
+        <dependency>
+            <groupId>org.codehaus.janino</groupId>
+            <artifactId>commons-compiler</artifactId>
+            <version>${commons-compiler.version}</version>
+        </dependency>
+
+        <!-- included to fix CVE-2023-33546 -->
+        <dependency>
+            <groupId>org.codehaus.janino</groupId>
+            <artifactId>janino</artifactId>
+            <version>${janino.version}</version>
         </dependency>
         <dependency>
             <groupId>uk.gov.companieshouse</groupId>
             <artifactId>private-api-sdk-java</artifactId>
             <version>${private-api-sdk-java.version}</version>
+            <exclusions>
+                <!-- exclude commons-lang3 to fix CVE-2025-48924 -->
+                <exclusion>
+                    <groupId>org.apache.commons</groupId>
+                    <artifactId>commons-lang3</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- include guava-33.4.2-jre to fix CVE-2023-2976 -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
+        </dependency>
+        <!-- include commons-lang3 to fix CVE-2025-48924 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang3.version}</version>
+        </dependency>
+        <!--include to fix CVE-2025-48734(8.8), CVE-2019-10086(7.3) -->
+        <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+            <version>${commons-beanutils.version}</version>
+        </dependency>
+        <!-- include snakeyaml-2.4 to fix CVE-2022-38752(6.5), CVE-2022-38751(6.5), CVE-2022-38750(5.5), CVE-2022-41854(6.5),
+        CVE-2022-25857(7.5), CVE-2022-38749(6.5), CVE-2022-1471(9.8) -->
+        <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+            <version>${snakeyaml.version}</version>
         </dependency>
         <dependency>
             <groupId>uk.gov.companieshouse</groupId>
@@ -114,11 +197,43 @@
             <groupId>uk.gov.companieshouse</groupId>
             <artifactId>api-sdk-manager-java-library</artifactId>
             <version>${api-sdk-manager-java-library.version}</version>
+            <exclusions>
+                <!--exclude commons-beanutils to address CVE-2025-48734(8.8), CVE-2019-10086(7.3) -->
+                <exclusion>
+                    <groupId>commons-beanutils</groupId>
+                    <artifactId>commons-beanutils</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>uk.gov.companieshouse</groupId>
             <artifactId>api-helper-java</artifactId>
             <version>${api-helper-java-library.version}</version>
+            <exclusions>
+                <!-- exclude jackson-databind to fix CVE-2023-35116 -->
+                <exclusion>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                    <artifactId>jackson-databind</artifactId>
+                </exclusion>
+                <!-- exclude plexus-utils to fix CVE-2022-4244, CVE-2022-4245 -->
+                <exclusion>
+                    <groupId>org.codehaus.plexus</groupId>
+                    <artifactId>plexus-utils</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- include plexus-utils to fix CVE-2022-4244, CVE-2022-4245 -->
+        <dependency>
+            <groupId>org.codehaus.plexus</groupId>
+            <artifactId>plexus-utils</artifactId>
+            <version>${plexus-utils.version}</version>
+        </dependency>
+        <!-- include jackson-databind-2.20.0 to fix CVE-2023-35116 -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson-databind.version}</version>
         </dependency>
         <dependency>
             <groupId>org.testcontainers</groupId>
@@ -128,7 +243,7 @@
         <dependency>
             <groupId>com.github.docker-java</groupId>
             <artifactId>docker-java-api</artifactId>
-            <version>3.2.12</version>
+            <version>${docker-java-api.version}</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
@@ -260,5 +375,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
