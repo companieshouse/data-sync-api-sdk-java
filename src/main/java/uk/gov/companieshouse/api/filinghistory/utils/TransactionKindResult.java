@@ -1,6 +1,6 @@
 package uk.gov.companieshouse.api.filinghistory.utils;
 
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 public class TransactionKindResult {
 
@@ -38,7 +38,7 @@ public class TransactionKindResult {
         final boolean sameKind = (this.kind == null && cmp.kind == null) ||
                 (this.kind != null && this.kind.equals(cmp.kind));
 
-        final boolean sameEncodedId = StringUtils.equals(this.encodedId, cmp.encodedId);
+        final boolean sameEncodedId = Strings.CS.equals(this.encodedId, cmp.encodedId);
 
         return sameKind && sameEncodedId;
     }
