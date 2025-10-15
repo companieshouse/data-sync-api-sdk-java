@@ -30,7 +30,7 @@ import uk.gov.companieshouse.api.utils.TestHelper;
 import uk.gov.companieshouse.logging.Logger;
 
 @ExtendWith(MockitoExtension.class)
-public class CompanyExemptionsApiServiceTest {
+class CompanyExemptionsApiServiceTest {
 
     private static final String COMPANY_NUMBER = TestHelper.COMPANY_NUMBER;
 
@@ -55,7 +55,6 @@ public class CompanyExemptionsApiServiceTest {
 
     @BeforeEach
     void setUp() {
-        companyExemptionsApiService.internalApiClient = internalApiClient;
         when(internalApiClient.privateDeltaResourceHandler()).thenReturn(resourceHandler);
         when(resourceHandler.getCompanyExemptionsResource(any())).thenReturn(companyExemptionsGetAll);
     }

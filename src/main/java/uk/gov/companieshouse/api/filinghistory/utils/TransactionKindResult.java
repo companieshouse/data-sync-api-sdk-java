@@ -42,4 +42,12 @@ public class TransactionKindResult {
 
         return sameKind && sameEncodedId;
     }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + (encodedId != null ? encodedId.hashCode() : 0);
+        result = 31 * result + (kind != null ? kind.hashCode() : 0);
+        return result;
+    }
 }

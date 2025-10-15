@@ -1,17 +1,19 @@
 package uk.gov.companieshouse.api.converter;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mongodb.BasicDBObject;
+import static org.junit.Assert.assertThrows;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mongodb.BasicDBObject;
+
 import uk.gov.companieshouse.api.psc.Statement;
 import uk.gov.companieshouse.api.psc.Statement.KindEnum;
 import uk.gov.companieshouse.api.utils.TestHelper;
 
-import static org.junit.Assert.assertThrows;
-
-public class WriteConverterTest {
+class WriteConverterTest {
 
     private static final KindEnum KIND = TestHelper.KIND;
 

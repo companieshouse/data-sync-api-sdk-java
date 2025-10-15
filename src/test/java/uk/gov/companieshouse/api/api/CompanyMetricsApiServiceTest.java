@@ -29,7 +29,7 @@ import uk.gov.companieshouse.api.utils.TestHelper;
 import uk.gov.companieshouse.logging.Logger;
 
 @ExtendWith(MockitoExtension.class)
-public class CompanyMetricsApiServiceTest {
+class CompanyMetricsApiServiceTest {
 
 
     private static final String COMPANY_NUMBER = TestHelper.COMPANY_NUMBER;
@@ -54,7 +54,6 @@ public class CompanyMetricsApiServiceTest {
 
     @BeforeEach
     void Setup() {
-        companyMetricsApiService.internalApiClient = internalApiClient;
         when(internalApiClient.privateCompanyMetricsResourceHandler()).thenReturn(
                 privateCompanyMetricsResourceHandler);
         when(privateCompanyMetricsResourceHandler.getCompanyMetrics(any())).thenReturn(
