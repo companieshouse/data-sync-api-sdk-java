@@ -2,7 +2,6 @@ package uk.gov.companieshouse.api.filinghistory.utils;
 
 import static org.apache.commons.lang3.StringUtils.trim;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
 
 import java.nio.charset.StandardCharsets;
 import org.apache.commons.codec.binary.Base64;

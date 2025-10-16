@@ -34,7 +34,7 @@ public class FormTypeService {
     }
 
     private static void initialiseBlockList() {
-        List<String> list = new ArrayList<String>();
+        List<String> list = new ArrayList<>();
         list.add("1(Scot)");
         list.add("1(scot)");
         list.add("1(SC)");

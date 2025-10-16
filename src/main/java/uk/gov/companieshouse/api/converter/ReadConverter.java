@@ -1,10 +1,13 @@
 package uk.gov.companieshouse.api.converter;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.bson.Document;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.data.convert.ReadingConverter;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import uk.gov.companieshouse.api.exception.InternalServiceException;
 
 @ReadingConverter
 public class ReadConverter<T> implements Converter<Document, T> {
@@ -20,9 +23,9 @@ public class ReadConverter<T> implements Converter<Document, T> {
     @Override
     public T convert(Document source) {
         try {
-          return this.objectMapper.readValue(source.toJson(), objectClass);
+            return this.objectMapper.readValue(source.toJson(), objectClass);
         } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
+            throw new InternalServiceException("failed to read and convert Document to JSON", e);
         }
     }
 }

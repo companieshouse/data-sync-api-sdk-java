@@ -20,17 +20,19 @@ public class CompanyMetricsApiService {
 
     private static final String GET_COMPANY_METRICS_ENDPOINT = "/company/%s/metrics";
 
-    @Autowired
-    InternalApiClient internalApiClient;
+    private final InternalApiClient internalApiClient;
+
+    private final Logger logger;
 
     @Value("${chs.api.metrics.url}")
     private String basePath;
 
-    /**
-     * Invoke Company Metrics API.
-     */
     @Autowired
-    Logger logger;
+    public CompanyMetricsApiService(Logger logger, InternalApiClient internalApiClient) {
+        super();
+        this.logger = logger;
+        this.internalApiClient = internalApiClient;
+    }
 
     /**
      * Get company metrics.

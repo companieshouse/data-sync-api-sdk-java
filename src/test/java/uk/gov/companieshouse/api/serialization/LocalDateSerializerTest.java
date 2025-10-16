@@ -15,7 +15,7 @@ import java.time.LocalDate;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
-public class LocalDateSerializerTest {
+class LocalDateSerializerTest {
 
     private LocalDateSerializer serializer;
 

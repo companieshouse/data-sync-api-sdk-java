@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import uk.gov.companieshouse.api.psc.Statement;
 import uk.gov.companieshouse.api.utils.TestHelper;
 
-public class ReadConverterTest {
+class ReadConverterTest {
 
     private static final String ETAG = TestHelper.ETAG;
 
@@ -23,6 +23,6 @@ public class ReadConverterTest {
         Document source = Document.parse("{\"etag\" : \"etag\"}");
         Statement actualStatement = pscStatementReadConverter.convert(source);
         Assertions.assertNotNull(actualStatement);
-        Assertions.assertEquals(actualStatement.getEtag(), ETAG);
+        Assertions.assertEquals(ETAG, actualStatement.getEtag());
     }
 }

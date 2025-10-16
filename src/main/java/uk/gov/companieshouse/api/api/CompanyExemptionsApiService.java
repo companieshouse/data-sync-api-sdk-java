@@ -19,14 +19,19 @@ public class CompanyExemptionsApiService {
 
     private static final String GET_COMPANY_EXEMPTIONS_ENDPOINT = "/company/%s/exemptions";
 
-    @Autowired
-    InternalApiClient internalApiClient;
+    private final InternalApiClient internalApiClient;
+
+    private final Logger logger;
 
     @Value("${chs.api.exemptions.url}")
     private String basePath;
 
     @Autowired
-    Logger logger;
+    public CompanyExemptionsApiService(Logger logger, InternalApiClient internalApiClient) {
+        super();
+        this.logger = logger;
+        this.internalApiClient = internalApiClient;
+    }
 
     public Optional<CompanyExemptions> getCompanyExemptions (final String companyNumber) {
         logger.trace(String.format("Started : getCompanyExemptions for Company Number %s ", companyNumber));
