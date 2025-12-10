@@ -18,7 +18,7 @@
     <properties>
         <java.version>21</java.version>
         <maven-build-helper-plugin.version>3.2.0</maven-build-helper-plugin.version>
-        <spring-boot-dependencies.version>3.5.3</spring-boot-dependencies.version>
+        <spring-boot-dependencies.version>3.5.7</spring-boot-dependencies.version>
 
         <!-- tests -->
         <maven-surefire-plugin.version>3.5.3</maven-surefire-plugin.version>
@@ -30,11 +30,12 @@
         <docker-java-api.version>3.5.3</docker-java-api.version>
         <spring-web.version>6.2.11</spring-web.version>
         <commons-lang3.version>3.19.0</commons-lang3.version>
-        <tomcat-embed-core.version>11.0.11</tomcat-embed-core.version>
+        <tomcat-embed-core.version>11.0.14</tomcat-embed-core.version>
+        <junit-jupiter.version>5.14.1</junit-jupiter.version>
 
         <!-- Internal -->
         <structured-logging.version>3.0.40</structured-logging.version>
-        <private-api-sdk-java.version>4.0.382</private-api-sdk-java.version>
+        <private-api-sdk-java.version>4.0.425</private-api-sdk-java.version>
         <api-security-java.version>2.0.15</api-security-java.version>
         <api-sdk-manager-java-library.version>3.0.13</api-sdk-manager-java-library.version>
         <api-helper-java-library.version>3.0.3</api-helper-java-library.version>
@@ -111,6 +112,12 @@
                     </exclusion>
                 </exclusions>
             </dependency>
+          <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${junit-jupiter.version}</version>
+            <scope>test</scope>
+          </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -164,11 +171,6 @@
             <groupId>uk.gov.companieshouse</groupId>
             <artifactId>api-helper-java</artifactId>
             <version>${api-helper-java-library.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.testcontainers</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.github.docker-java</groupId>
