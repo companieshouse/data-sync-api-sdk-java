@@ -1,6 +1,6 @@
 package uk.gov.companieshouse.api.serialization;
 
-import static org.junit.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.IOException;
 import java.time.LocalDate;
