@@ -41,9 +41,10 @@
         <api-helper-java-library.version>3.0.3</api-helper-java-library.version>
 
         <!--sonar configuration-->
-        <sonar-maven-plugin.version>4.0.0.4121</sonar-maven-plugin.version>
-        <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
-        <sonar.projectKey>uk.gov.companieshouse:api</sonar.projectKey>
+        <sonar-maven-plugin.version>5.1.0.4751</sonar-maven-plugin.version>
+        <sonar.projectKey>uk.gov.companieshouse:data-sync-api-sdk-java</sonar.projectKey>
+        <sonar.projectName>data-sync-api-sdk-java</sonar.projectName>
+        <sonar.token>${CODE_ANALYSIS_TOKEN}</sonar.token>
         <sonar.sources>src/main</sonar.sources>
         <sonar.tests>src/test</sonar.tests>
         <sonar.verbose>true</sonar.verbose>
@@ -54,6 +55,7 @@
         <sonar.java.binaries>${project.basedir}/target,${project.basedir}/target/*</sonar.java.binaries>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
+
     </properties>
 
     <dependencyManagement>
