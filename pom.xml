@@ -44,6 +44,8 @@
         <sonar-maven-plugin.version>5.1.0.4751</sonar-maven-plugin.version>
         <sonar.projectKey>uk.gov.companieshouse:data-sync-api-sdk-java</sonar.projectKey>
         <sonar.projectName>data-sync-api-sdk-java</sonar.projectName>
+        <sonar.login></sonar.login>
+        <sonar.password></sonar.password>
         <sonar.token>${CODE_ANALYSIS_TOKEN}</sonar.token>
         <sonar.sources>src/main</sonar.sources>
         <sonar.tests>src/test</sonar.tests>
