@@ -5,6 +5,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.format.annotation.DateTimeFormat;
 import uk.gov.companieshouse.api.company.Data;
+import uk.gov.companieshouse.api.company.SensitiveData;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -19,6 +20,9 @@ public class CompanyProfileDocument {
 
     @Field("data")
     public Data companyProfile;
+
+    @Field("sensitive_data")
+    public SensitiveData sensitiveData;
 
     @Field("delta_at")
     @DateTimeFormat(
@@ -104,6 +108,15 @@ public class CompanyProfileDocument {
         return this;
     }
 
+    public SensitiveData getSensitiveData() {
+        return sensitiveData;
+    }
+
+    public CompanyProfileDocument setSensitiveData(SensitiveData sensitiveData) {
+        this.sensitiveData = sensitiveData;
+        return this;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -117,11 +130,12 @@ public class CompanyProfileDocument {
                 that.companyProfile)
                 && updated.equals(that.updated)
                 && hasMortgages == that.hasMortgages
-                && parentCompanyNumber.equals(that.parentCompanyNumber);
+                && parentCompanyNumber.equals(that.parentCompanyNumber)
+                && sensitiveData.equals(that.sensitiveData);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, companyProfile, updated, hasMortgages, parentCompanyNumber);
+        return Objects.hash(id, companyProfile, updated, hasMortgages, parentCompanyNumber, sensitiveData);
     }
 }
