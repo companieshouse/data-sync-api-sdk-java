@@ -34,7 +34,7 @@
         <junit-jupiter.version>5.14.1</junit-jupiter.version>
 
         <!-- Internal -->
-        <structured-logging.version>3.0.40</structured-logging.version>
+        <structured-logging.version>3.0.42</structured-logging.version>
         <private-api-sdk-java.version>4.0.466</private-api-sdk-java.version>
         <api-security-java.version>2.0.15</api-security-java.version>
         <api-sdk-manager-java-library.version>3.0.13</api-sdk-manager-java-library.version>
