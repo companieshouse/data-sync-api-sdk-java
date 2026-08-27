@@ -59,7 +59,7 @@
         <sonar.java.binaries>${project.basedir}/target,${project.basedir}/target/*</sonar.java.binaries>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
-        <log4j-api.version>2.26.0</log4j-api.version>
+        <log4j-api.version>2.26.1</log4j-api.version>
         <guava.version>32.0.1-android</guava.version>
         <grpc-context.version>1.81.0</grpc-context.version>
         <jackson-core.version>3.1.4</jackson-core.version>
