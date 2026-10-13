@@ -18,7 +18,7 @@ class FormTypeServiceTest {
     @Test
     void shouldBuildBlockListOfCorrectSize() {
         List<String> actual = FormTypeService.getBlockList();
-        assertEquals(345, actual.size());
+        assertEquals(346, actual.size());
     }
 
     @ParameterizedTest

@@ -364,6 +364,7 @@ public class FormTypeService {
         list.add("RROC138");
         list.add("RROC649");
         list.add("VAL");
+        list.add("RP01SH01");
         list.add("RP04SH01");
         list.add("RP04SH02");
         list.add("RP04SH05");
